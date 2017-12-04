@@ -1,0 +1,34 @@
+<template id="rotate">
+  <style>
+    :host {
+      display: inline-block;
+      animation: var(--rotate-speed , 2.5s) animation infinite linear var(--rotate-direction , normal);
+    }
+    @keyframes animation {
+      0% {
+        transform: rotateZ(360deg);
+      }
+      100% {
+        transform: rotateZ(0deg);
+      }
+    }
+  </style>
+  <slot></slot>
+</template>
+
+<script>
+  !function(){
+    const rDoc  = document.currentScript.ownerDocument;
+
+    customElements.define('rotate-box',
+      class extends HTMLElement {
+        constructor() {
+          super();
+          const shadowRoot = this.attachShadow({ mode: 'open' });
+          const template = rDoc.getElementById('rotate').content;
+          shadowRoot.appendChild(template.cloneNode(true));
+        }
+      }
+    );
+  }();
+</script>
