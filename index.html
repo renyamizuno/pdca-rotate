@@ -7,6 +7,22 @@
     <link rel="import" href="./components/pdca-rotate.html">
   </head>
   <body>
-    <pdca-rotate></pdca-rotate>
+    <pdca-rotate rpm="30" rotate-direction="normal"></pdca-rotate>
+    <input name="rpm" value="30" />
+    <select name="rotate-direction">
+      <option value="normal">normal</option>
+      <option value="reverse">reverse</option>
+    </select>
+    <script>
+      !function(){
+          const pdca = document.querySelector('pdca-rotate');
+          document.querySelector('[name="rpm"]').addEventListener('change', e => {
+            pdca.rpm = e.target.value;
+          });
+          document.querySelector('[name="rotate-direction"]').addEventListener('change', e => {
+            pdca.rotateDirection = e.target.value;
+          });
+        }();
+      </script>
   </body>
 </html>
